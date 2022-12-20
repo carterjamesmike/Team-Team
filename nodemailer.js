@@ -1,4 +1,3 @@
-
 "use strict";
 const nodemailer = require("nodemailer");
 
@@ -29,10 +28,10 @@ async function main() {
 
 
   let info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <team_village@outlook.com>', // sender address
+    from: '"Team Village" <team_village@outlook.com>', // sender address
     to: "carterjamesmike@gmail.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
+    subject: "A new date has been requested", // Subject line
+    text: "Hello village, a new date has been requested. ", // plain text body
     //html: "<b>Hello world?</b>", // html body
   });
 
