@@ -1,0 +1,23 @@
+{
+  "name": "team-team",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nodemailer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carterjamesmike/Team-Team.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carterjamesmike/Team-Team/issues"
+  },
+  "homepage": "https://github.com/carterjamesmike/Team-Team#readme",
+  "dependencies": {
+    "nodemailer": "^6.4.11"
+  }
+}
