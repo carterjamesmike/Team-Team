@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const { init } = require('./Parents');
+
 
 class Request extends Model{}
 
@@ -43,7 +43,7 @@ Request.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'children'
+        modelName: 'requests'
         }
 );
 
