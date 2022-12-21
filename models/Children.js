@@ -10,12 +10,13 @@ Children.init({
         primaryKey: true,
         autoIncrement: true,
       },
-    names:{
+    name:{
         type: DataTypes.STRING,
         allowNull: false
      },
      parents_id:{
         type: DataTypes.INTEGER,
+        allowNull: false,
         references:{
             model: 'parents',
             key: 'id'
