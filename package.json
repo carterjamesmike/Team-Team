@@ -1,5 +1,31 @@
 {
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "connect-session-sequelize": "^7.0.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.18.2",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.3",
+    "mysql2": "^2.3.3",
+    "nodemailer": "^6.8.0",
     "sequelize": "^6.27.0"
-  }
+  },
+  "name": "team-team",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carterjamesmike/Team-Team.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carterjamesmike/Team-Team/issues"
+  },
+  "homepage": "https://github.com/carterjamesmike/Team-Team#readme"
 }
