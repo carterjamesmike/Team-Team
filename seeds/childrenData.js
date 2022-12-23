@@ -2,16 +2,16 @@ const { Children } = require('../models')
 const childrendData = [
     {
         name:"kal",
-        parent_id: 1
+        parents_id: 1
     },{
         name:"steven",
-        parent_id:2
+        parents_id:2
     },{
         name:"emily",
-        parent_id:3
+        parents_id:3
     },{
         name:"shaun",
-        parent_id:4
+        parents_id:4
     }
 ]
 
