@@ -33,11 +33,7 @@ Request.init(
               model:'parents',
               key:'id'
             }
-          }
-          
-
-          
-          
+          }     
     },
     {
         sequelize,
