@@ -1,7 +1,10 @@
 const Parents = require('./Parents');
 const Accept = require('./Accept');
 const Children = require('./Children');
-const Requests = require('./Requests');
+const Requests = require('./Requests')
+
+
+
 
 Parents.hasMany(Children,{
     foreignKey:'parent_id'
@@ -32,5 +35,5 @@ Requests.belongsTo(Children,{
     onDelete:"cascade"
 });
 
-module.exports = { Parents, Accept, Children, Requests }
+module.exports = { Parents, Accept, Children, Reqquests }
 
