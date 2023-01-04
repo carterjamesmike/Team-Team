@@ -43,4 +43,28 @@ router.post('/', async (req, res) => {
 
 });
 
+router.post('/login', async (req,res) =>{
+    try{
+        Parents.findOne({
+            where:{
+                names: req.body.name
+            }
+        }).then((parentData) =>{
+            if(!parentData){
+                res.status(400).json({message:'no account found with those name(s)'})
+                return;
+            }
+            const passwordMatch = parentData.checkPassword(req.body.password);
+            if(!passwordMatch){
+                res.status(400).json({message: 'wrong password'})
+                return;
+            }
+            res.json({user: parentData, message:'logged in succsesfully'})
+        })
+    }catch(err){
+        res.status(500).json(err);
+    }
+})
+
+
 module.exports = router;
