@@ -66,5 +66,19 @@ router.post('/login', async (req,res) =>{
     }
 })
 
+router.delete('/:id', async (req, res) => {
+    try {
+        Parents.destroy({
+            where:{
+                id: req.params.id
+            }
+        }).then((parentData) => {
+            res.json(parentData)
+        });
+      } catch (err) {
+        res.status(500).json(err);
+      }
+
+});
 
 module.exports = router;
