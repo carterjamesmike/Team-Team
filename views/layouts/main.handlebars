@@ -1,44 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fund My Project!</title>
-  <link rel="stylesheet" href="/css/jass.css">
-  <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=|, initial-scale=1.0">
+    <title>Project 2</title>
+    <link rel="stylesheet" href="../../public/css/style.css">
 </head>
-
 <body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <span role="img" aria-label="money">💸</span>
-        <a href="/">Fund My Project!</a>
-      </h1>
-      <nav>
-        {{!-- <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}} --}}
-      </nav>
-    </header>
-    <main class="container container-fluid mt-5">
-      <!-- Render the sub layout -->
-      {{{ body }}}
-    </main>
-    <footer>
-      
-    </footer>
-  </div>
+    <div class = "search-bar">
+        <input type="text" placeholder="Search">
+    </div>
+    <div class = "todays-date">
+       <p>Today's Date</p>
+    </div>
+    <div class = "request">
+        <button>
+            Request a Sitter!
+        </button>
+    </div>
+    <div class= "openings">
+        <button>New openings!</button>
+    </div>
+    <div class = "parents">
+       <p>Parents</p>
+    </div>
+    <div class = "children">
+       <p>Children</p>
+    </div>
+    <div class= "profile">
+        <button>Your Profile</button>
+    </div>
+    <div class="calendar">
+        <p>Calendar</p>
+</div>
 
-  <!-- Render script for logged in users only -->
-  {{!-- {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}} --}}
 </body>
-
 </html>
