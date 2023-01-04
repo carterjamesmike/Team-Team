@@ -27,4 +27,20 @@ router.get('/:id', async (req, res) => {
       }
 
 });
+
+router.post('/', async (req, res) => {
+    try {
+        Parents.create({
+            names: req.body.names,
+            email: req.body.email,
+            password: req.body.password
+        }).then((parentData) => {
+            res.json(parentData)
+        });
+      } catch (err) {
+        res.status(500).json(err);
+      }
+
+});
+
 module.exports = router;
