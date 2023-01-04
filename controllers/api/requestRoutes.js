@@ -3,9 +3,29 @@ const { Request } = require('../../models');
 
 
 router.get('/', (req, res) => {
+    try{
     Request.findAll().then((requestData) => {
         res.json(requestData)
     });
+}catch(err){
+    console.log(err);
+    res.status(500).json(err);
+}
+});
+
+router.get('/', (req, res) => {
+    try{
+    Request.findOne({
+        where:{
+            id: req.params.id
+        }
+    }).then((requestData) => {
+        res.json(requestData)
+    });
+}catch(err){
+    console.log(err);
+    res.status(500).json(err);
+}
 });
 
 
