@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 }
 });
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
     try{
     Request.findOne({
         where:{
