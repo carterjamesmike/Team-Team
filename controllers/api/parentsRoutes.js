@@ -29,16 +29,29 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+    // try {
+    //     Parents.create({
+    //         names: req.body.names,
+    //         email: req.body.email,
+    //         password: req.body.password
+    //     }).then((parentData) => {
+    //         res.json(parentData)
+    //     });
+    //   } catch (err) {
+    //     res.status(500).json(err);
+    //   }
+    console.log("Hiya post route!")
     try {
-        Parents.create({
-            names: req.body.names,
-            email: req.body.email,
-            password: req.body.password
-        }).then((parentData) => {
-            res.json(parentData)
+        const userData = await User.create(req.body);
+    
+        req.session.save(() => {
+          req.session.user_id = userData.id;
+          req.session.logged_in = true;
+    
+          res.status(200).json(userData);
         });
       } catch (err) {
-        res.status(500).json(err);
+        res.status(400).json(err);
       }
 
 });
