@@ -27,7 +27,7 @@ const loginFormHandler = async (event) => {
     event.preventDefault();
  
   
-    const name = document.querySelector('#name-signup').value.trim();
+    const names = document.querySelector('#name-signup').value.trim();
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
 
@@ -49,6 +49,17 @@ const loginFormHandler = async (event) => {
       }
     }
   };
+
+  //Test stuff (delete before prod)
+  let test = document.getElementById('test-button');
+  test.addEventListener('click', testFunction);
+
+  function testFunction () {
+    console.log("Heya")
+  }
+
+  let James = "this is this!";
+//Test stuff
 
 
   document
