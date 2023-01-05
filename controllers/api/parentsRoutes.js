@@ -42,15 +42,16 @@ router.post('/', async (req, res) => {
     //   }
     console.log("Hiya post route!")
     try {
-        const userData = await User.create(req.body);
+        const parentsData = await Parents.create(req.body);
     
         req.session.save(() => {
-          req.session.user_id = userData.id;
+          req.session.parents_id = parentsData.id;
           req.session.logged_in = true;
     
           res.status(200).json(userData);
         });
       } catch (err) {
+        console.log(err);
         res.status(400).json(err);
       }
 
