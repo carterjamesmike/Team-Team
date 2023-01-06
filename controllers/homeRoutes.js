@@ -56,14 +56,31 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/parent', (req, res) => {
+router.get('/parent', withAuth, async (req, res) => {
   // If the user is already logged in, redirect the request to another route
   // if (req.session.logged_in) {
   //   res.redirect('/parent');
   //   return;
   // }
 
-  res.render('parent');
+  // res.render('parent');
+  try {
+    // Find the logged in user based on the session ID
+    const parentData = await Parents.findByPk(req.session.parent_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Children }],
+    });
+
+    const parent = parentData.get({ plain: true });
+
+    res.render('parent', {
+      ...parent,
+      logged_in: true
+    });
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err);
+  }
 });
 
 
