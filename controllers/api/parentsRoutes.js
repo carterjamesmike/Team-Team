@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const sequelize = require('../../config/connection');
 const { Parents } = require('../../models');
 
 
@@ -129,10 +130,10 @@ router.delete('/:id', async (req, res) => {
 
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/subtract/:id', async (req, res) => {
     try {
         Parents.update({
-            credits: credits -1
+            credit: sequelize.literal("credit - 1")
         },{
             where:{
                 id: req.params.id
@@ -146,10 +147,10 @@ router.put('/:id', async (req, res) => {
 
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/add/:id', async (req, res) => {
     try {
         Parents.update({
-            credits: credits +1
+            credit: sequelize.literal("credit + 1")
         },{
             where:{
                 id: req.params.id
@@ -158,6 +159,7 @@ router.put('/:id', async (req, res) => {
             res.json(parentData)
         });
       } catch (err) {
+        console.log(err);
         res.status(500).json(err);
       }
 
