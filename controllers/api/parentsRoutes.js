@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
     //   }
     console.log("Hiya post route!")
     try {
-        const parentsData = await Parents.create(req.body);
+        const parentsData = await Parents.create(req.body, credit = 5);
     
         req.session.save(() => {
           req.session.parents_id = parentsData.id;
@@ -95,4 +95,37 @@ router.delete('/:id', async (req, res) => {
 
 });
 
+router.put('/:id', async (req, res) => {
+    try {
+        Parents.update({
+            credits: credits -1
+        },{
+            where:{
+                id: req.params.id
+            }
+        }).then((parentData) => {
+            res.json(parentData)
+        });
+      } catch (err) {
+        res.status(500).json(err);
+      }
+
+});
+
+router.put('/:id', async (req, res) => {
+    try {
+        Parents.update({
+            credits: credits +1
+        },{
+            where:{
+                id: req.params.id
+            }
+        }).then((parentData) => {
+            res.json(parentData)
+        });
+      } catch (err) {
+        res.status(500).json(err);
+      }
+
+});
 module.exports = router;
