@@ -10,7 +10,13 @@
 </head>
 <body>
     <nav>
-        <button id="logout">login</button>
+        {{!-- <button id="logout">login</button> --}}
+        {{#if logged_in}}
+        <a href="/profile">profile</a> |
+        <button class="btn btn-primary" id="logout">logout</button>
+        {{else}}
+        <a href="/login">login</a>
+        {{/if}}
     </nav>
     <main>
         {{{ body }}}

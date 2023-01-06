@@ -31,6 +31,7 @@ Parents.init(
         credit: {
           type: DataTypes.INTEGER,
           allowNull: false,
+          defaultValue: 5
           
         },
         password:{
