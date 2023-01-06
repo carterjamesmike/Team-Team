@@ -28,6 +28,11 @@ Parents.init(
             isEmail: true,
           }
         },
+        credit: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          
+        },
         password:{
           type: DataTypes.STRING,
           allowNull: false,
