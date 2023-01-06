@@ -15,7 +15,8 @@ const loginFormHandler = async (event) => {
   
       if (response.ok) {
         // If successful, redirect the browser to the profile page
-        document.location.replace('/parents');
+        console.log("Success")
+        document.location.replace('/');
       } else {
         alert(response.statusText);
       }
@@ -49,17 +50,6 @@ const loginFormHandler = async (event) => {
       }
     }
   };
-
-  //Test stuff (delete before prod)
-  let test = document.getElementById('test-button');
-  test.addEventListener('click', testFunction);
-
-  function testFunction () {
-    console.log("Heya")
-  }
-
-  let James = "this is this!";
-//Test stuff
 
 
   document
