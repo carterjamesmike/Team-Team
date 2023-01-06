@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
           req.session.parents_id = parentsData.id;
           req.session.logged_in = true;
     
-          res.status(200).json(userData);
+          res.status(200).json(parentsData);
         });
       } catch (err) {
         console.log(err);
@@ -61,7 +61,7 @@ router.post('/login', async (req,res) =>{
     try{
         Parents.findOne({
             where:{
-                names: req.body.name
+                email: req.body.email
             }
         }).then((parentData) =>{
             if(!parentData){
@@ -76,6 +76,7 @@ router.post('/login', async (req,res) =>{
             res.json({user: parentData, message:'logged in succsesfully'})
         })
     }catch(err){
+        console.log(err)
         res.status(500).json(err);
     }
 })
@@ -128,4 +129,14 @@ router.put('/:id', async (req, res) => {
       }
 
 });
+router.post('/logout', (req, res) => {
+    if (req.session.logged_in) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    } else {
+      res.status(404).end();
+    }
+  });
+
 module.exports = router;
