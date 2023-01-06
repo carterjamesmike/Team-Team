@@ -1,20 +1,23 @@
 const router = require('express').Router();
-const { Accept, Children, Parents, Requests } = require('../models');
+const { Accept, Children, Parents, Request } = require('../models');
 const withAuth = require('../utils/auth');
 
 //Display all parents (general GET route)
 router.get('/', async (req, res) => {
     try {
-        const parentData = await Parents.findAll();
+        const requestData = await Request.findAll();
 
-        const parents = parentData.map((parent) => parent.get({ plain: true }));
+        const requests = requestData.map((request) => request.get({ plain: true }));
 
         res.render('homepage', {
-            parents,
+            requests,
             logged_in: req.session.logged_in
         });
 
-    } catch (err) { res.status(500).json(err) }
+    } catch (err) { 
+      console.log(err)
+      res.status(500).json(err);
+     }
 });
 
 //Display individual parent by ID (general GET by ID route)
@@ -36,13 +39,30 @@ router.get('/parent/:id', async (req, res) => {
 
 //Renders add a request page (general redirect route)
 router.get('/request', withAuth, async (req, res) => {
-    try {
-        res.render('request', { 
-        logged_in: req.session.logged_in 
-    });
-    } catch (err) { 
+    // try {
+    //     res.render('request', { 
+    //     logged_in: req.session.logged_in 
+    // });
+    // } catch (err) { 
+    //     console.log(err)
+    //     res.status(500).json(err) }
+    router.get('/', async (req, res) => {
+      try {
+          const requestData = await Request.findAll();
+  
+          const requests = requestData.map((request) => request.get({ plain: true }));
+  
+          res.render('requests', {
+              ...requests,
+              logged_in: req.session.logged_in
+          });
+  
+      } catch (err) { 
         console.log(err)
-        res.status(500).json(err) }
+        res.status(500).json(err);
+       }
+  });
+
 });
 
 router.get('/login', (req, res) => {
@@ -68,7 +88,7 @@ router.get('/parent', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const parentData = await Parents.findByPk(req.session.parent_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Children }],
+      include: [{ model: Children, Request }],
     });
 
     const parent = parentData.get({ plain: true });
@@ -79,6 +99,29 @@ router.get('/parent', withAuth, async (req, res) => {
     });
   } catch (err) {
     console.log(err)
+    res.status(500).json(err);
+  }
+});
+
+router.get('/request/:id', async (req, res) => {
+  try {
+    const requestData = await Request.findByPk(req.params.id, {
+      include: [
+        {
+          model: Request,
+          attributes: ['title'],
+        },
+      ],
+    });
+
+    const request = requestData.get({ plain: true });
+
+    res.render('request', {
+      ...request,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

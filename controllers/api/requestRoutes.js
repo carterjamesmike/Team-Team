@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Request } = require('../../models');
-
+const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
     try{
@@ -29,19 +29,32 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.post('/',async(req,res)=>{
-    try{
-    const dbRequestData =await Request.create({
-        title: req.body.title,
-        date: req.body.date,
-        comment: req.body.comment,
-        accepted:false,
-        parents_id: req.body.parents_id
+router.post('/', withAuth, async (req,res) => {
+//     try{
+//     const dbRequestData =await Request.create({
+//         title: req.body.title,
+//         date: req.body.date,
+//         comment: req.body.comment,
+//         accepted:false,
+//         parents_id: req.body.parents_id
+//     });
+//     res.status(200).json(dbRequestData);
+// }catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+
+try {
+    const newRequest = await Request.create({
+      ...req.body,
+      parents_id: req.session.parent_id,
+    
     });
-    res.status(200).json(dbRequestData);
-}catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    
+    res.status(200).json(newRequest);
+  } catch (err) {
+    console.log(err)
+    res.status(400).json(err);
   }
 });
 

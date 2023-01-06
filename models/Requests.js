@@ -25,7 +25,8 @@ Request.init(
             allowNull: true
           },
           accepted:{
-            type:DataTypes.BOOLEAN
+            type:DataTypes.BOOLEAN,
+            defaultValue: false,
           },
           parents_id:{
             type: DataTypes.INTEGER,
