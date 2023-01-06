@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
           req.session.parents_id = parentsData.id;
           req.session.logged_in = true;
     
-          res.status(200).json(userData);
+          res.status(200).json(parentsData);
         });
       } catch (err) {
         console.log(err);
