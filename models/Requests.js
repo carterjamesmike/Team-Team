@@ -40,7 +40,7 @@ Request.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'requests'
+        modelName: 'request'
         }
 );
 
