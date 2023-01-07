@@ -4,20 +4,21 @@ const withAuth = require('../utils/auth');
 
 //Display all parents (general GET route)
 router.get('/', async (req, res) => {
-    try {
-        const requestData = await Request.findAll();
+    // try {
+    //     const requestData = await Request.findAll();
 
-        const requests = requestData.map((request) => request.get({ plain: true }));
+    //     const requests = requestData.map((request) => request.get({ plain: true }));
 
-        res.render('homepage', {
-            requests,
-            logged_in: req.session.logged_in
-        });
+    //     res.render('homepage', {
+    //         requests,
+    //         logged_in: req.session.logged_in
+    //     });
 
-    } catch (err) { 
-      console.log(err)
-      res.status(500).json(err);
-     }
+    // } catch (err) { 
+    //   console.log(err)
+    //   res.status(500).json(err);
+    //  }
+    res.render('homepage')
 });
 
 //Display individual parent by ID (general GET by ID route)
@@ -38,7 +39,7 @@ router.get('/parent/:id', async (req, res) => {
   });
 
 //Renders add a request page (general redirect route)
-router.get('/request', withAuth, async (req, res) => {
+router.get('/requests', withAuth, async (req, res) => {
     // try {
     //     res.render('request', { 
     //     logged_in: req.session.logged_in 
@@ -46,14 +47,14 @@ router.get('/request', withAuth, async (req, res) => {
     // } catch (err) { 
     //     console.log(err)
     //     res.status(500).json(err) }
-    router.get('/', async (req, res) => {
       try {
           const requestData = await Request.findAll();
   
           const requests = requestData.map((request) => request.get({ plain: true }));
+      
   
           res.render('requests', {
-              ...requests,
+              requests,
               logged_in: req.session.logged_in
           });
   
@@ -63,7 +64,6 @@ router.get('/request', withAuth, async (req, res) => {
        }
   });
 
-});
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
@@ -103,28 +103,21 @@ router.get('/parent', withAuth, async (req, res) => {
   }
 });
 
-router.get('/request/:id', async (req, res) => {
-  try {
-    const requestData = await Request.findByPk(req.params.id, {
-      include: [
-        {
-          model: Request,
-          attributes: ['title'],
-        },
-      ],
-    });
+// router.get('/requests/:id', async (req, res) => {
+//   try {
+//     const requestData = await Request.findByPk(req.params.id);
 
-    const request = requestData.get({ plain: true });
+//     const request = requestData.get({ plain: true });
 
-    res.render('request', {
-      ...request,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+//     res.render('requests', {
+//       ...request,
+//       logged_in: req.session.logged_in
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 
 
 module.exports = router;

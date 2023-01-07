@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Children } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 
 router.get('/', async (req, res) => {
@@ -28,16 +29,28 @@ router.get('/:id', async (req, res) => {
 
 });
 
-router.post('/', async (req, res) => {
+router.post('/',  async (req,res) => {
+    // try {
+    //     Children.create({
+    //         name: req.body.name,
+    //         parents_id: req.body.parents_id
+    //     }).then((childData) => {
+    //         res.json(childData)
+    //     });
+    //   } catch (err) {
+    //     res.status(500).json(err);
+    //   }
     try {
-        Children.create({
-            name: req.body.name,
-            parents_id: req.body.parents_id
-        }).then((childData) => {
-            res.json(childData)
+        const newChild = await Children.create({
+          ...req.body,
+          parents_id: req.session.parent_id,
+        
         });
+        
+        res.status(200).json(newChild);
       } catch (err) {
-        res.status(500).json(err);
+        console.log(err)
+        res.status(400).json(err);
       }
 
 });

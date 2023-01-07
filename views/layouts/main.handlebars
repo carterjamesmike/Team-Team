@@ -12,8 +12,9 @@
     <nav>
         {{!-- <button id="logout">login</button> --}}
         {{#if logged_in}}
-        <a href="/profile">profile</a> |
+        <a href="/parent">profile</a> |
         <button class="btn btn-primary" id="logout">logout</button>
+        <a href="/">Home</a>
         {{else}}
         <a href="/login">login</a>
         {{/if}}
