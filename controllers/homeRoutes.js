@@ -48,7 +48,14 @@ router.get('/requests', withAuth, async (req, res) => {
     //     console.log(err)
     //     res.status(500).json(err) }
       try {
-          const requestData = await Request.findAll();
+          const requestData = await Request.findAll({
+            include: [
+              {
+                model: Parents,
+                attributes: ['names'],
+              },
+            ],
+          });
   
           const requests = requestData.map((request) => request.get({ plain: true }));
       
