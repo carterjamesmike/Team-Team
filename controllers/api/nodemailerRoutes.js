@@ -1,13 +1,8 @@
 const router = require('express').Router();
 const nodemailer = require("nodemailer");
-//const { json } = require('sequelize');
-
 
 
   router.post('/', async (req, res) => {
-      
-    // const emailData = req.body.requestEmail;
-    // console.log(emailData)
 
     try {
       const emailData = req.body.requestEmail;
