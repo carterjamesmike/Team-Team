@@ -1,36 +1,18 @@
-{{!-- <div class="text-center">
-  <h2>{{date}}</h2>
-  <p>{{comment}}</p>
-  <p>Created by {{user.name}} on {{format_date date_created}}</p>
-  <p>
-    <span for="img" aria-label="money">💲</span>
-    <span class="dollar-amount">{{format_amount needed_funding}}</span>
-    needed
-  </p>
-  <p>
-    <button class="btn btn-primary">Accept Babysitting Date?</button>
-  </p>
-</div> --}}
-{{!-- <h1>Requests</h1>
-{{#each requests as |request| }}
-<div>
-  <h1>{{request.id}}</h1>
-</div>
-<div>
-  <h1>{{request.title}}</h1>
-</div>
-<div>
-  <h1>{{request.comment}}</h1>
-</div>
-{{/each}} --}}
+
+<h1>Available Babysitting Dates</h1>
+<button id="test">Test</button>
 {{#each requests as |request|}}
 <div class="text-center card">
   <h2>{{request.title}}</h2>
+  <p id="request-id">{{request.id}}</p>
   <p>{{request.comment}}</p>
   <p>Created by {{parent.names}}</p>
   <p>{{request.date}}</p>
   <p>
-    <button class="btn btn-primary">Accept this request</button>
+    <button id="accept-request" class="btn btn-primary accept-request">Accept this request</button>
   </p>
 </div>
 {{/each}}
+
+
+ <script src="./js/requests.js"></script>

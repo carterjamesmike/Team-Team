@@ -30,17 +30,7 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    // try {
-    //     Parents.create({
-    //         names: req.body.names,
-    //         email: req.body.email,
-    //         password: req.body.password
-    //     }).then((parentData) => {
-    //         res.json(parentData)
-    //     });
-    //   } catch (err) {
-    //     res.status(500).json(err);
-    //   }
+
     console.log("Hiya post route!")
     try {
         // const parentsData = await Parents.create(req.body, credit = 5);
@@ -60,27 +50,7 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req,res) =>{
     console.log("Hiya login route")
-    // try{
-    //     Parents.findOne({
-    //         where:{
-    //             email: req.body.email
-    //         }
-    //     }).then((parentData) =>{
-    //         if(!parentData){
-    //             res.status(400).json({message:'no account found with those name(s)'})
-    //             return;
-    //         }
-    //         const passwordMatch = parentData.checkPassword(req.body.password);
-    //         if(!passwordMatch){
-    //             res.status(400).json({message: 'wrong password'})
-    //             return;
-    //         }
-    //         res.json({user: parentData, message:'logged in succsesfully'})
-    //     })
-    // }catch(err){
-    //     console.log(err)
-    //     res.status(500).json(err);
-    // }
+
 
     try {
         const parentData = await Parents.findOne({ where: { email: req.body.email } });

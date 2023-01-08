@@ -30,19 +30,6 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/', withAuth, async (req,res) => {
-//     try{
-//     const dbRequestData =await Request.create({
-//         title: req.body.title,
-//         date: req.body.date,
-//         comment: req.body.comment,
-//         accepted:false,
-//         parents_id: req.body.parents_id
-//     });
-//     res.status(200).json(dbRequestData);
-// }catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
 
 try {
     const newRequest = await Request.create({
@@ -72,17 +59,38 @@ router.delete('/:id',async(req,res)=>{
   }
 });
 
-router.put('/:id',async(req,res)=>{
-    try{
-    const dbRequestData =await Request.update(req.body,{
-        where:{
-            id: req.params.id
+// router.put('/:id',async(req,res)=>{
+//     try{
+//     const dbRequestData =await Request.update(req.body,{
+//         where:{
+//             id: req.params.id
+//         }
+//     });
+//     res.status(200).json(dbRequestData);
+// }catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// })
+
+router.put('/:id', withAuth, async(req, res) => {
+        try {
+          const updateRequest = await Request.update(
+            {
+              accepted: true 
+            },
+            {
+              where: {
+                id: req.params.id,
+              },
+            }
+          );
+          res.status(200).json(updateRequest);
+        } catch (err) {
+            console.log(err)
+          res.status(500).json(err);
         }
-    });
-    res.status(200).json(dbRequestData);
-}catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-})
+});
+
+
 module.exports = router;
