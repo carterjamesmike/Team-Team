@@ -1,18 +1,21 @@
 
 <h1>Available Babysitting Dates</h1>
-<button id="test">Test</button>
+
 {{#each requests as |request|}}
 <div class="text-center card">
   <h2>{{request.title}}</h2>
-  <p id="request-id">{{request.id}}</p>
+  {{!-- <p id="request-id">{{request.id}}</p> --}}
   <p>{{request.comment}}</p>
   <p>Created by {{parent.names}}</p>
   <p>{{request.date}}</p>
   <p>
-    <button id="accept-request" class="btn btn-primary accept-request">Accept this request</button>
+    {{!-- <button data-id="{{request.id}}" class="btn btn-primary">Accept this request</button> --}}
+    <input name="{{parent.email}}" id="{{request.id}}" class="btn btn-primary" type="button" value="Accept this Request">
   </p>
 </div>
 {{/each}}
 
 
  <script src="./js/requests.js"></script>
+
+ 

@@ -52,7 +52,7 @@ router.get('/requests', withAuth, async (req, res) => {
             include: [
               {
                 model: Parents,
-                attributes: ['names'],
+                attributes: ['email', 'names'],
               },
             ],
           });
