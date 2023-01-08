@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-export async function sendEmail() {
+async function sendEmail() {
 
   let transporter = nodemailer.createTransport({
     host: "outlook.office365.com",
@@ -31,5 +31,6 @@ export async function sendEmail() {
   console.log("Message sent: %s", info.messageId);
 
 }
+
 
 //main().catch(console.error);
