@@ -4,20 +4,7 @@ const withAuth = require('../utils/auth');
 
 //Display all parents (general GET route)
 router.get('/', async (req, res) => {
-    // try {
-    //     const requestData = await Request.findAll();
 
-    //     const requests = requestData.map((request) => request.get({ plain: true }));
-
-    //     res.render('homepage', {
-    //         requests,
-    //         logged_in: req.session.logged_in
-    //     });
-
-    // } catch (err) { 
-    //   console.log(err)
-    //   res.status(500).json(err);
-    //  }
     res.render('homepage')
 });
 
@@ -40,13 +27,7 @@ router.get('/parent/:id', async (req, res) => {
 
 //Renders add a request page (general redirect route)
 router.get('/requests', withAuth, async (req, res) => {
-    // try {
-    //     res.render('request', { 
-    //     logged_in: req.session.logged_in 
-    // });
-    // } catch (err) { 
-    //     console.log(err)
-    //     res.status(500).json(err) }
+
       try {
           const requestData = await Request.findAll({
             include: [
@@ -79,18 +60,11 @@ router.get('/login', (req, res) => {
     return;
   }
   
-
   res.render('login');
 });
 
 router.get('/parent', withAuth, async (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  // if (req.session.logged_in) {
-  //   res.redirect('/parent');
-  //   return;
-  // }
 
-  // res.render('parent');
   try {
     // Find the logged in user based on the session ID
     const parentData = await Parents.findByPk(req.session.parent_id, {

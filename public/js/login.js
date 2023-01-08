@@ -14,7 +14,6 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        // If successful, redirect the browser to the profile page
         console.log("Success")
         document.location.replace('/parent');
       } else {
@@ -43,9 +42,7 @@ const loginFormHandler = async (event) => {
   
       if (response.ok) {
         document.location.replace('/parent');
-        //console.log("Success!")
       } else {
-        //console.log("Nope")
         alert(response.statusText);
       }
     }

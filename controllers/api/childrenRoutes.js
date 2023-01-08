@@ -30,16 +30,7 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/',  async (req,res) => {
-    // try {
-    //     Children.create({
-    //         name: req.body.name,
-    //         parents_id: req.body.parents_id
-    //     }).then((childData) => {
-    //         res.json(childData)
-    //     });
-    //   } catch (err) {
-    //     res.status(500).json(err);
-    //   }
+
     try {
         const newChild = await Children.create({
           ...req.body,

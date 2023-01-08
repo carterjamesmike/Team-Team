@@ -31,14 +31,12 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
 
-    console.log("Hiya post route!")
     try {
-        // const parentsData = await Parents.create(req.body, credit = 5);
+
         const parentsData = await Parents.create(req.body);
         req.session.save(() => {
-          req.session.parents_id = parentsData.id;
+          req.session.parent_id = parentsData.id;
           req.session.logged_in = true;
-    
           res.status(200).json(parentsData);
         });
       } catch (err) {
@@ -50,7 +48,6 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req,res) =>{
     console.log("Hiya login route")
-
 
     try {
         const parentData = await Parents.findOne({ where: { email: req.body.email } });
