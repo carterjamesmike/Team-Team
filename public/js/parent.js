@@ -76,7 +76,6 @@ const newChildHandler = async (event) => {
     .querySelector('.new-child-form')
     .addEventListener('submit', newChildHandler);
 
-    // document
-    // .querySelector('.new-child-form')
-    // .addEventListener('submit', newChildHandler);
+
+
   
