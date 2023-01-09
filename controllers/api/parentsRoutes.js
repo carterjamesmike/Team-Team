@@ -2,7 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Parents } = require('../../models');
 
-
+//Insomnia testing
 router.get('/', async (req, res) => {
     try {
         Parents.findAll().then((parentData) => {
@@ -14,6 +14,7 @@ router.get('/', async (req, res) => {
 
 });
 
+//Insomnia testing
 router.get('/:id', async (req, res) => {
     try {
         Parents.findOne({
@@ -26,29 +27,27 @@ router.get('/:id', async (req, res) => {
       } catch (err) {
         res.status(500).json(err);
       }
-
 });
 
+//Creates new parent from login page
 router.post('/', async (req, res) => {
-
     try {
-
         const parentsData = await Parents.create(req.body);
         req.session.save(() => {
           req.session.parent_id = parentsData.id;
           req.session.logged_in = true;
           res.status(200).json(parentsData);
         });
+
       } catch (err) {
         console.log(err);
         res.status(400).json(err);
       }
-
 });
 
+//Login route
 router.post('/login', async (req,res) =>{
     console.log("Hiya login route")
-
     try {
         const parentData = await Parents.findOne({ where: { email: req.body.email } });
     
@@ -71,7 +70,6 @@ router.post('/login', async (req,res) =>{
         req.session.save(() => {
           req.session.parent_id = parentData.id;
           req.session.logged_in = true;
-          
           res.json({ parent: parentData, message: 'You are now logged in!' });
         });
     
@@ -82,6 +80,7 @@ router.post('/login', async (req,res) =>{
 
 });
 
+//Deletes a parent
 router.delete('/:id', async (req, res) => {
     try {
         Parents.destroy({
@@ -97,6 +96,7 @@ router.delete('/:id', async (req, res) => {
 
 });
 
+//Subtracts a credit from parent. For use in future development
 router.put('/subtract/:id', async (req, res) => {
     try {
         Parents.update({
@@ -114,6 +114,7 @@ router.put('/subtract/:id', async (req, res) => {
 
 });
 
+//Adds a credit to parent. For use in future development
 router.put('/add/:id', async (req, res) => {
     try {
         Parents.update({
@@ -131,6 +132,8 @@ router.put('/add/:id', async (req, res) => {
       }
 
 });
+
+//Logout route
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
       req.session.destroy(() => {
@@ -139,6 +142,6 @@ router.post('/logout', (req, res) => {
     } else {
       res.status(404).end();
     }
-  });
+});
 
 module.exports = router;

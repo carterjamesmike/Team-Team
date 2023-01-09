@@ -28,6 +28,7 @@ Parents.init(
             isEmail: true,
           }
         },
+        //For use with future development
         credit: {
           type: DataTypes.INTEGER,
           allowNull: false,

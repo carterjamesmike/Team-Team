@@ -1,0 +1,9 @@
+<h1>Families</h1>
+
+{{#each children as |child|}}
+<div class="text-center card">
+  <h2>{{parent.names}}</h2>
+  <h3>Children:</h3>
+  <p>{{child.name}}</p>
+</div>
+{{/each}}
