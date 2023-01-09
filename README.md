@@ -11,15 +11,19 @@
     watch your kid as well as take up request from other parents. Since the idea is give and take, and x's out the need to spend money, the ability to make requests will be based on a credit system. You need a credit to be able to make requests for your children to be watched, and you gain credits by taking requests from other parents. When making a request you title, specify a date,
     and write a comment for specifics about the request.
 
-## Licenses
+## Technologies Used
+    We used nodemailer to handle sending out emails when requests are accepted. 
 
+## Licenses
+    MIT
 ## Deployed Application
     https://enigmatic-basin-06766.herokuapp.com/
 ## Screenshots
 
-    ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screensho+Here)
+<img src="./public/photo/village1.png">
+<img src="./public/photo/village2.png">   
 
 ## Credits/questions
     GitHub: https://github.com/connorg24
 
-    other githubs go here
+    other github go here
