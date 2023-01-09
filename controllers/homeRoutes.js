@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Accept, Children, Parents, Request } = require('../models');
+const { Children, Parents, Request } = require('../models');
 const withAuth = require('../utils/auth');
 
 //Display all parents (general GET route)
@@ -26,7 +26,6 @@ router.get('/parent/:id', async (req, res) => {
 
 //Renders add a request page (general redirect route)
 router.get('/requests', withAuth, async (req, res) => {
-
       try {
           const requestData = await Request.findAll({
             include: [
@@ -39,7 +38,6 @@ router.get('/requests', withAuth, async (req, res) => {
   
           const requests = requestData.map((request) => request.get({ plain: true }));
       
-  
           res.render('requests', {
               requests,
               logged_in: req.session.logged_in
@@ -68,13 +66,13 @@ router.get('/parent', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const parentData = await Parents.findByPk(req.session.parent_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Children, Request }],
+      include: [{ model: Children }],
     });
 
-    const parent = parentData.get({ plain: true });
+    const parents = parentData.get({ plain: true });
 
     res.render('parent', {
-      ...parent,
+      ...parents,
       logged_in: true
     });
   } catch (err) {
@@ -83,22 +81,30 @@ router.get('/parent', withAuth, async (req, res) => {
   }
 });
 
-// router.get('/requests/:id', async (req, res) => {
-//   try {
-//     const requestData = await Request.findByPk(req.params.id);
+router.get('/families', async (req, res) => {
 
-//     const request = requestData.get({ plain: true });
+  try {
+      const childrenData = await Children.findAll({
+        include: [
+          {
+            model: Parents,
+            attributes: ['names'],
+          },
+        ],
+      });
 
-//     res.render('requests', {
-//       ...request,
-//       logged_in: req.session.logged_in
-//     });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+      const children = childrenData.map((child) => child.get({ plain: true }));
+  
+      res.render('families', {
+          children,
+          logged_in: req.session.logged_in
+      });
 
+  } catch (err) { 
+    console.log(err)
+    res.status(500).json(err);
+   }
+});
 
 module.exports = router;
 
