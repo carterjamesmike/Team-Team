@@ -4,7 +4,6 @@ const withAuth = require('../utils/auth');
 
 //Display all parents (general GET route)
 router.get('/', async (req, res) => {
-
     res.render('homepage')
 });
 

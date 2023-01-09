@@ -421,7 +421,7 @@
   }
   
   a {
-    color: #1b89bc;
+    color: #000000;
     text-decoration: none;
   }
   
@@ -1010,8 +1010,8 @@
   }
   
   .btn.btn-primary {
-    background-color: #2d3e50;
-    color: #d9e9e8;
+    background-color: #f5cac3;
+    color: #000000;
   }
   
   .btn.btn-primary:hover {
@@ -1082,8 +1082,13 @@
   }
   
   .card {
-    border: 1px solid #1a1a1a;
+    border: 2px solid #f28482;
+    border-radius: 10px;
     margin-bottom: 1rem;
+    height: auto;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .card .card-header {

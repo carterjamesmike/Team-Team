@@ -9,47 +9,23 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <nav>
-        {{!-- <button id="logout">login</button> --}}
-        {{#if logged_in}}
-        <a href="/parent">profile</a> |
-        <button class="btn btn-primary" id="logout">logout</button>
-        <a href="/">Home</a>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav">
+                {{#if logged_in}}
+                <li><a class="btn btn-primary" id="logout">Logout</a></li>    
+                <li><a class="btn btn-primary" href="/parent">Profile</a></li>    
+                <li><a class="btn btn-primary" href="/">Home</a></li> 
+                {{else}}  
+                <li><a class="btn btn-primary" href="/login">Login</a></li> 
+                {{/if}}   
+                <li><a class="btn btn-primary" href="/requests">View Requests</a></li>    
+            </ul>        
+        </div>
     </nav>
-    <main>
-        {{{ body }}}
-    </main>
-    {{!-- <div class = "search-bar">
-        <input type="text" placeholder="Search">
-    </div>
-    <div class = "todays-date">
-       <p>Today's Date</p>
-    </div>
-    <div class = "request">
-        <button>
-            Request a Sitter!
-        </button>
-    </div>
-    <div class= "openings">
-        <button>New openings!</button>
-    </div>
-    <div class = "parents">
-       <p>Parents</p>
-    </div>
-    <div class = "children">
-       <p>Children</p>
-    </div>
-    <div class= "profile">
-        <button>Your Profile</button>
-    </div>
-    <div class="calendar">
-        <p>Calendar</p>
-</div> --}}
-
-
+<main>
+    {{{ body }}}
+</main>
 <script src="/js/logout.js"></script>
 </body>
 </html>
