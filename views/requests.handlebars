@@ -9,8 +9,11 @@
   <p>Created by {{parent.names}}</p>
   <p>{{request.date}}</p>
   <p>
-    {{!-- <button data-id="{{request.id}}" class="btn btn-primary">Accept this request</button> --}}
+    {{#if request.accepted}}
+    <p>This request has already been accepted</p>
+    {{else}}
     <input name="{{parent.email}}" id="{{request.id}}" class="btn btn-primary" type="button" value="Accept this Request">
+    {{/if}}
   </p>
 </div>
 {{/each}}
